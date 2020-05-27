@@ -123,7 +123,7 @@ class HMM:
         T = len(x)
         delta = np.zeros((T, self.M))
         psi = np.zeros((T, self.M))
-        delta[0] = np.log(self.pi) * np.log(self.B[:, x[0]])
+        delta[0] = np.log(self.pi) + np.log(self.B[:, x[0]])
         for t in range(1, T):
             for j in range(self.M):
                 delta[t,j] = np.max(delta[t-1] + np.log(self.A[:,j]) + np.log(self.B[j, x[t]]))
